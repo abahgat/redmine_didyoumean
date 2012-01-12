@@ -1,0 +1,3 @@
+= Did You Mean
+
+A plugin to search for duplicate Redmine issues as users type new ones
