@@ -8,3 +8,5 @@ Redmine::Plugin.register :redmine_didyoumean do
   url 'http://www.github.com/abahgat/didyoumean'
   author_url 'http://abahgat.com/'
 end
+
+require 'redmine_didyoumean/hooks/didyoumean_hooks'
