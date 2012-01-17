@@ -1,0 +1,9 @@
+div.similar_issues {
+  margin-left: 180px;
+  border: 1px dashed silver;
+  padding: 5px;
+}
+
+ul.issue_list {
+  margin: 2px;
+}

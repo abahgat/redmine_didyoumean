@@ -1,2 +1,5 @@
-<%= javascript_include_tag 'didyoumean', :plugin => 'redmine_didyoumean' %>
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'didyoumean', :plugin => 'redmine_didyoumean' %>
+    <%= javascript_include_tag 'didyoumean', :plugin => 'redmine_didyoumean' %>
+<% end %>
 <%= javascript_tag "observeIssueSubjectField();" %>
