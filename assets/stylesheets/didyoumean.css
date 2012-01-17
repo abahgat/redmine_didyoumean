@@ -1,9 +1,13 @@
-div.similar_issues {
-  margin-left: 180px;
-  border: 1px dashed silver;
-  padding: 5px;
+div#similar_issues {
+  padding: 5px 5px 5px 180px;
 }
 
-ul.issue_list {
+ul#issue_list {
   margin: 2px;
+  list-style-type: none;
+  padding: 2px;
+}
+
+#similar_issues a {
+  cursor: hand;
 }

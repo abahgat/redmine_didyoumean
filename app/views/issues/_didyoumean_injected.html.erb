@@ -1,3 +1,13 @@
+<div style="display: none;">
+  <div id="similar_issues">
+      <b><%= l(:similar_issues_caption) %></b>
+      <ul id="issue_list">
+        <!-- this is a placeholder and will be removed -->
+          <li><a>#1: subject of issue 1</a> (status)</li><li><a>#2: subject of issue 2</a> (status)</li>
+      </ul>
+  </div>
+</div>
+
 <% content_for :header_tags do %>
     <%= stylesheet_link_tag 'didyoumean', :plugin => 'redmine_didyoumean' %>
     <%= javascript_include_tag 'didyoumean', :plugin => 'redmine_didyoumean' %>
