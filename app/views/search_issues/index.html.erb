@@ -1,1 +1,9 @@
 <h2>SearchIssues#index</h2>
+
+results: <%= @count %>
+
+<% @results.each do |result| %>
+  <p>
+  <%= result.id %>
+  </p>
+<% end %>
