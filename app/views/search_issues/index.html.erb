@@ -2,8 +2,10 @@
 
 results: <%= @count %>
 
+<% if @results %>
 <% @results.each do |result| %>
   <p>
   <%= result.id %>
   </p>
+<% end %>
 <% end %>

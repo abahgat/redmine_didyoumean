@@ -6,7 +6,7 @@ class SearchIssuesController < ApplicationController
     @query = params[:query] || ""
     @query.strip!
 
-    logger.info "Got request for #{@query}"
+    logger.info "Got request for [#{@query}]"
 
     @all_words = true # is it necessary?
     @titles_only = true
