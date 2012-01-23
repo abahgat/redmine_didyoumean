@@ -46,5 +46,6 @@ class SearchIssuesController < ApplicationController
     else
       @query = ""
     end
+    render :json => @results
   end
 end

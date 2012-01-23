@@ -1,11 +1,18 @@
 function observeIssueSubjectField() {
 
   $('issue_subject').observe('change', function(event){
-    console.log(Event.element(event).value);
+  	emptySimilarIssuesBlock();
+    var url = '/searchissues?query=' + Event.element(event).value;
+    new Ajax.Request(url, {
+    	onSuccess: function(transport) {
+    		var data = JSON.parse(transport.responseText);
+    		if(data.length) {
+    			drawSimilarIssuesBlock();
+    			populateSimilarIssuesBlock(data);
+    		}
+    	}
+    });   
   });
-
-  drawSimilarIssuesBlock();
-
 }
 
 function drawSimilarIssuesBlock() {
@@ -16,10 +23,10 @@ function drawSimilarIssuesBlock() {
 
 function populateSimilarIssuesBlock(items) {
   
-  $('issue_list').descendants().remove();
-
+  $('issue_list').innerHTML = '';
+  
   for (var i = items.length - 1; i >= 0; i--) {
-    var item_html = // display items[i]
+    var item_html = displayItem(items[i]);
     $('issue_list').insert({top: item_html});
   };
 
@@ -29,9 +36,13 @@ function populateSimilarIssuesBlock(items) {
 
 }
 
+function displayItem(item) {
+	return '<li> <a href="/issues/' + item.id + '">' + item.subject + '</a></li>';
+}
+
 function emptySimilarIssuesBlock() {
   
-  $('issue_list').descendants().remove();
+  $('issue_list').innerHTML = '';
 
   if ($('similar_issues').visible()) {
     $('similar_issues').hide();
