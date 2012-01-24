@@ -9,7 +9,7 @@ class RoutesTest < ActionController::TestCase
   
 	def test_similar_issues_route
 	  path = '/searchissues'
-    opts = {:controller => 'search_issues', :action => 'index'}
+    opts = {:controller => 'search_issues', :action => 'index', :format => 'json'}
     assert_routing path, opts
     assert_recognizes opts, path
   end

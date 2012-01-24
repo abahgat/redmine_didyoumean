@@ -8,7 +8,7 @@ class SearchIssuesController < ApplicationController
 
     logger.info "Got request for [#{@query}]"
 
-    @all_words = true # is it necessary?
+    @all_words = true # if true, returns records that contain all the words specified in the input query
     @titles_only = true
 
     # TODO handle subprojects, or parent & siblings, look in search_controller.rb in Redmine
@@ -26,6 +26,7 @@ class SearchIssuesController < ApplicationController
 
     if !@tokens.empty?
       # no more than 5 tokens to search for
+      # this is probably too strict, in this use case
       @tokens.slice! 5..-1 if @tokens.size > 5
 
       @results = []
