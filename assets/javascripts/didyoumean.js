@@ -30,6 +30,7 @@ function populateSimilarIssuesBlock(items) {
     $('issue_list').insert({top: item_html});
   };
 
+ $('issues_count_value').innerHTML = items.length;
   if (! $('similar_issues').visible()) {
     $('similar_issues').show();
   }
