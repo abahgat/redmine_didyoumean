@@ -2,7 +2,7 @@ div#similar_issues {
   padding: 5px 5px 5px 180px;
 }
 
-ul#issue_list {
+ul#similar_issues_list {
   margin: 2px;
   list-style-type: none;
   padding: 2px;
