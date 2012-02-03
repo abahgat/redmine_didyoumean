@@ -1,9 +1,19 @@
 class SearchIssuesController < ApplicationController
   unloadable
 
+	helper :queries
+  	include QueriesHelper
 
   def index
-    @query = params[:query] || ""
+  
+  	#@query_obj = Query.new(:name => "_")
+  	#@query_obj.add_filters("subject", "~", params[:query])
+  	@query = params[:query] || ""  	
+  	#@issues = @query_obj.issues(:include => [:assigned_to, :tracker, :priority, :category, :status],
+     #                       :offset => 0,
+      #                      :limit => 10)
+  	
+
     @query.strip!
 
     logger.info "Got request for [#{@query}]"
@@ -29,24 +39,35 @@ class SearchIssuesController < ApplicationController
       # this is probably too strict, in this use case
       @tokens.slice! 5..-1 if @tokens.size > 5
 
-      @results = []
+	  @condition = '%'
+	  @tokens.each do |cur|
+	  	@condition += cur +'%'
+	  end
 
       limit = 10
-      r, c = Issue.search(@tokens, projects_to_search,
-        :all_words => @all_words,
-        :titles_only => @titles_only,
-        :limit => (limit+1))
-      @results += r
+	  @issues = Issue.find(:all, :conditions => ["subject like ?", @condition], :include => [:assigned_to, :status], :joins => [:status], :limit => limit)
+      @results = []
 
-      @count = c
 
-      logger.info "Got #{c} results"
+      #r, c = Issue.search(@tokens, projects_to_search,
+      #  :all_words => @all_words,
+      #  :titles_only => @titles_only,
+      #  :limit => (limit+1))
+      #@results += r
+
+      #@count = c
+
+      logger.info "Got #{@issues.length} results"
 
       # what a lame ordering
-      @results = @results.sort {|a,b| b.event_datetime <=> a.event_datetime}
+      #@results = @results.sort {|a,b| b.event_datetime <=> a.event_datetime}
+      
+
     else
       @query = ""
     end
-    render :json => @results
+    logger.info @issues.to_json
+    render :json => @issues.to_json(:include => [:status])
+
   end
 end
