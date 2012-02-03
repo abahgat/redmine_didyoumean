@@ -23,11 +23,11 @@ function drawSimilarIssuesBlock() {
 
 function populateSimilarIssuesBlock(items) {
   
-  $('issue_list').innerHTML = '';
+  $('similar_issues_list').innerHTML = '';
   
   for (var i = items.length - 1; i >= 0; i--) {
     var item_html = displayItem(items[i]);
-    $('issue_list').insert({top: item_html});
+    $('similar_issues_list').insert({top: item_html});
   };
 
  $('issues_count').innerHTML = items.length;
@@ -43,7 +43,7 @@ function displayItem(item) {
 
 function emptySimilarIssuesBlock() {
   
-  $('issue_list').innerHTML = '';
+  $('similar_issues_list').innerHTML = '';
 
   if ($('similar_issues').visible()) {
     $('similar_issues').hide();
