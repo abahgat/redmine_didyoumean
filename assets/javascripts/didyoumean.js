@@ -38,7 +38,7 @@ function populateSimilarIssuesBlock(items) {
 }
 
 function displayItem(item) {
-	return '<li> <a href="/issues/' + item.id + '">' + item.subject + '</a> ' + item.status.name + '</li>';
+	return '<li> <a href="/issues/' + item.id + '">#' + item.id + ' &ndash; ' + item.subject + '</a> (' + item.status.name + ')</li>';
 }
 
 function emptySimilarIssuesBlock() {
