@@ -6,14 +6,7 @@ class SearchIssuesController < ApplicationController
 
   def index
   
-  	#@query_obj = Query.new(:name => "_")
-  	#@query_obj.add_filters("subject", "~", params[:query])
   	@query = params[:query] || ""  	
-  	#@issues = @query_obj.issues(:include => [:assigned_to, :tracker, :priority, :category, :status],
-     #                       :offset => 0,
-      #                      :limit => 10)
-  	
-
     @query.strip!
 
     logger.info "Got request for [#{@query}]"
@@ -39,13 +32,13 @@ class SearchIssuesController < ApplicationController
       # this is probably too strict, in this use case
       @tokens.slice! 5..-1 if @tokens.size > 5
 
-	  @condition = '%'
-	  @tokens.each do |cur|
-	  	@condition += cur +'%'
-	  end
+	    @condition = '%'
+	    @tokens.each do |cur|
+	  	  @condition += cur +'%'
+      end
 
       limit = 10
-	  @issues = Issue.find(:all, :conditions => ["subject like ?", @condition], :include => [:assigned_to, :status], :joins => [:status], :limit => limit)
+      @issues = Issue.find(:all, :conditions => ["subject like ?", @condition], :include => [:assigned_to, :status, :tracker], :joins => [:status, :tracker], :limit => limit)
       @results = []
 
 
@@ -66,8 +59,9 @@ class SearchIssuesController < ApplicationController
     else
       @query = ""
     end
+
     logger.info @issues.to_json
-    render :json => @issues.to_json(:include => [:status])
+    render :json => @issues.to_json(:include => [:status, :tracker])
 
   end
 end
