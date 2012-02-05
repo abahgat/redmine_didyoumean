@@ -1,9 +1,6 @@
 class SearchIssuesController < ApplicationController
   unloadable
 
-	helper :queries
-  	include QueriesHelper
-
   def index
   
   	@query = params[:query] || ""  	
@@ -12,7 +9,6 @@ class SearchIssuesController < ApplicationController
     logger.info "Got request for [#{@query}]"
 
     @all_words = true # if true, returns records that contain all the words specified in the input query
-    @titles_only = true
 
     # TODO handle subprojects, or parent & siblings, look in search_controller.rb in Redmine
     # pick the current project
@@ -32,23 +28,21 @@ class SearchIssuesController < ApplicationController
       # this is probably too strict, in this use case
       @tokens.slice! 5..-1 if @tokens.size > 5
 
-	    @condition = '%'
-	    @tokens.each do |cur|
-	  	  @condition += cur +'%'
+      if @all_words:
+        separator = ' AND '
+      else
+        separator = ' OR '
       end
 
+      tokens = []
+	    @tokens.each do |cur|
+	  	  tokens << '%' + cur +'%'
+      end
+
+      conditions = (['subject like ?'] * tokens.length).join(separator)
+
       limit = 10
-      @issues = Issue.find(:all, :conditions => ["subject like ?", @condition], :include => [:assigned_to, :status, :tracker], :joins => [:status, :tracker], :limit => limit)
-      @results = []
-
-
-      #r, c = Issue.search(@tokens, projects_to_search,
-      #  :all_words => @all_words,
-      #  :titles_only => @titles_only,
-      #  :limit => (limit+1))
-      #@results += r
-
-      #@count = c
+      @issues = Issue.find(:all, :conditions => [conditions, *tokens], :include => [:assigned_to, :status, :tracker], :joins => [:status, :tracker], :limit => limit)
 
       logger.info "Got #{@issues.length} results"
 
