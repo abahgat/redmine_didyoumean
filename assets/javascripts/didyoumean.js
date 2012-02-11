@@ -1,8 +1,8 @@
-function observeIssueSubjectField() {
+function observeIssueSubjectField(project_id) {
 
   $('issue_subject').observe('change', function(event){
   	emptySimilarIssuesBlock();
-    var url = '/searchissues?query=' + Event.element(event).value;
+    var url = '/searchissues?project_id=' + project_id + '&query=' + Event.element(event).value;
    	new Ajax.Request(url, {
    		onSuccess: function(transport) {
    			var data = JSON.parse(transport.responseText);
@@ -38,7 +38,7 @@ function populateSimilarIssuesBlock(items) {
 }
 
 function displayItem(item) {
-	return '<li> <a href="/issues/' + item.id + '">' + item.tracker.name + ' #' + item.id + ' &ndash; ' + item.subject + '</a> (' + item.status.name + ')</li>';
+	return '<li><a href="/issues/' + item.id + '">' + item.tracker.name + ' #' + item.id + ' &ndash; ' + item.subject + '</a> (' + item.status.name + ' on ' + item.project.name +')</li>';
 }
 
 function emptySimilarIssuesBlock() {

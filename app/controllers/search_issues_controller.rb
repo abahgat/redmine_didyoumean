@@ -10,13 +10,16 @@ class SearchIssuesController < ApplicationController
 
     @all_words = true # if true, returns records that contain all the words specified in the input query
 
-    # TODO handle subprojects, or parent & siblings, look in search_controller.rb in Redmine
     # pick the current project
-    projects_to_search = nil
+    project = Project.find(params[:project_id]) unless params[:project_id].blank?
+    # search subprojects too
+    project_tree = project ? (project.self_and_descendants.active) : nil
 
-    # TODO do we need to call this User.current.allowed_to?("view_issues", projects_to_search)
-    # is it possible to add issues without being able to view them?
-    
+    # check permissions
+    scope = project_tree.select {|p| User.current.allowed_to?(:view_issues, p)}
+
+    logger.info "The current project scope is #{scope}"
+
     # extract tokens from the query
     # eg. hello "bye bye" => ["hello", "bye bye"]
     @tokens = @query.scan(%r{((\s|^)"[\s\w]+"(\s|$)|\S+)}).collect {|m| m.first.gsub(%r{(^\s*"\s*|\s*"\s*$)}, '')}
@@ -39,10 +42,10 @@ class SearchIssuesController < ApplicationController
 	  	  tokens << '%' + cur +'%'
       end
 
-      conditions = (['subject like ?'] * tokens.length).join(separator)
+      conditions = (['subject like ?'] * tokens.length).join(separator) + " AND project_id in (?)"
 
       limit = 10
-      @issues = Issue.find(:all, :conditions => [conditions, *tokens], :include => [:assigned_to, :status, :tracker], :joins => [:status, :tracker], :limit => limit)
+      @issues = Issue.find(:all, :conditions => [conditions, *tokens << scope], :include => [:status, :tracker, :project], :joins => [:status, :tracker], :limit => limit)
 
       logger.info "Got #{@issues.length} results"
 
@@ -55,7 +58,6 @@ class SearchIssuesController < ApplicationController
     end
 
     logger.info @issues.to_json
-    render :json => @issues.to_json(:include => [:status, :tracker])
-
+    render :json => @issues.to_json(:include => [:status, :tracker, :project])
   end
 end
