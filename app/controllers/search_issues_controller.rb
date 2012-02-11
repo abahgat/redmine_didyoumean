@@ -49,8 +49,8 @@ class SearchIssuesController < ApplicationController
 
       logger.info "Got #{@issues.length} results"
 
-      # what a lame ordering
-      #@results = @results.sort {|a,b| b.event_datetime <=> a.event_datetime}
+      # order by decreasing creation time. Some relevance sort would be a lot more appropriate here
+      @issues = @issues.sort {|a,b| b.id <=> a.id}
       
 
     else
