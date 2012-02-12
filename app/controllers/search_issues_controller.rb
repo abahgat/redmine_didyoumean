@@ -37,17 +37,17 @@ class SearchIssuesController < ApplicationController
         separator = ' OR '
       end
 
-      tokens = []
-	    @tokens.each do |cur|
-	  	  tokens << '%' + cur +'%'
-      end
+      @tokens.map! {|cur| '%' + cur +'%'}
 
-      conditions = (['subject like ?'] * tokens.length).join(separator) + " AND project_id in (?)"
+      conditions = (['subject like ?'] * @tokens.length).join(separator) + " AND project_id in (?)"
+      variables = *@tokens << scope
 
-      limit = 10
-      @issues = Issue.find(:all, :conditions => [conditions, *tokens << scope], :include => [:status, :tracker, :project], :joins => [:status, :tracker], :limit => limit)
+      # this chould be configurable as well, one day
+      limit = 5
+      @issues = Issue.find(:all, :conditions => [conditions, *variables], :include => [:status, :tracker, :project], :joins => [:status, :tracker], :limit => limit)
+      @count = Issue.count(:all, :conditions => [conditions, *variables])
 
-      logger.info "Got #{@issues.length} results"
+      logger.info "#{@count} results found, returning the first #{@issues.length}"
 
       # order by decreasing creation time. Some relevance sort would be a lot more appropriate here
       @issues = @issues.sort {|a,b| b.id <=> a.id}
@@ -60,6 +60,6 @@ class SearchIssuesController < ApplicationController
     end
 
     logger.info @issues.to_json
-    render :json => @issues.to_json(:include => [:status, :tracker, :project])
+    render :json => { :total => @count, :issues => @issues.map!{|i| i.as_json(:include => [:status, :tracker, :project])}}
   end
 end
