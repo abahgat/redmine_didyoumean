@@ -55,6 +55,8 @@ class SearchIssuesController < ApplicationController
 
     else
       @query = ""
+      @count = 0
+      @issues = []
     end
 
     logger.info @issues.to_json
