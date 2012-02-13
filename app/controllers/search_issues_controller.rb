@@ -40,7 +40,7 @@ class SearchIssuesController < ApplicationController
       @tokens.map! {|cur| '%' + cur +'%'}
 
       conditions = (['subject like ?'] * @tokens.length).join(separator) + " AND project_id in (?)"
-      variables = *@tokens << scope
+      variables = @tokens << scope
 
       # this chould be configurable as well, one day
       limit = 5
