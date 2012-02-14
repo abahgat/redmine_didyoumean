@@ -2,7 +2,7 @@ function observeIssueSubjectField(project_id) {
 
   $('issue_subject').observe('change', function(event){
   	emptySimilarIssuesBlock();
-    var url = '/searchissues?project_id=' + project_id + '&query=' + Event.element(event).value;
+    var url = dym.search_url + '?project_id=' + project_id + '&query=' + Event.element(event).value;
    	new Ajax.Request(url, {
    		onSuccess: function(transport) {
    			var data = JSON.parse(transport.responseText);
@@ -37,12 +37,12 @@ function populateSimilarIssuesBlock(data) {
   }
   if (data.total > data.issues.length) {
     var more = data.total - data.issues.length;
-    $('similar_issues_list').insert({bottom: '<li>+' + more + ' more</li>'});
+    $('similar_issues_list').insert({bottom: '<li>+' + more + ' ' + dym.label_more + '</li>'});
   }
 }
 
 function displayItem(item) {
-	return '<li><a href="/issues/' + item.id + '">' + item.tracker.name + ' #' + item.id + ' &ndash; ' + item.subject + '</a> (' + item.status.name + ' on ' + item.project.name +')</li>';
+	return '<li><a href="' + dym.issue_url + '/' + item.id + '">' + item.tracker.name + ' #' + item.id + ' &ndash; ' + item.subject + '</a> (' + item.status.name + ' ' + dym.label_in + ' ' + item.project.name +')</li>';
 }
 
 function emptySimilarIssuesBlock() {
