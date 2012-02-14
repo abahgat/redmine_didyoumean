@@ -41,10 +41,18 @@ class SearchIssuesController < ApplicationController
 
       conditions = (['subject like ?'] * @tokens.length).join(separator) + " AND project_id in (?)"
       variables = @tokens << scope
+      
+      show_only_open = true
+      if show_only_open
+      	valid_statuses = IssueStatus.all(:conditions => ["is_closed <> ?", true])
+      	logger.info "Valid status ids are #{valid_statuses}"
+      	conditions += " AND status_id in (?)"
+      	variables <<= valid_statuses
+      end
 
-      # this chould be configurable as well, one day
+      # this should be configurable as well, one day
       limit = 5
-      @issues = Issue.find(:all, :conditions => [conditions, *variables], :include => [:status, :tracker, :project], :joins => [:status, :tracker], :limit => limit)
+      @issues = Issue.find(:all, :conditions => [conditions , *variables], :include => [:status, :tracker, :project], :limit => limit)
       @count = Issue.count(:all, :conditions => [conditions, *variables])
 
       logger.info "#{@count} results found, returning the first #{@issues.length}"
