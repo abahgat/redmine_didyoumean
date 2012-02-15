@@ -1,0 +1,10 @@
+<fieldset>
+<p>
+<label><%= l(:show_only_open_label)%></label>
+<%= select_tag 'settings[show_only_open]', options_for_select({
+						l(:only_open) => "1",
+						l(:all_statuses) => "0"
+						}, @settings['show_only_open'])
+%>
+</p>
+</fieldset>
