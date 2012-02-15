@@ -3,4 +3,7 @@ en:
   similar_issues_caption: "Issues with similar titles"
   more_issues: "More"
   in_project: "in"
+  show_only_open_label: "Show issue statuses: "
+  only_open: "Only open"
+  all_statuses: "All statuses"
 

@@ -42,8 +42,8 @@ class SearchIssuesController < ApplicationController
       conditions = (['subject like ?'] * @tokens.length).join(separator) + " AND project_id in (?)"
       variables = @tokens << scope
       
-      show_only_open = true
-      if show_only_open
+      logger.info Setting.plugin_redmine_didyoumean.to_json
+      if Setting.plugin_redmine_didyoumean['show_only_open'] == "1"
       	valid_statuses = IssueStatus.all(:conditions => ["is_closed <> ?", true])
       	logger.info "Valid status ids are #{valid_statuses}"
       	conditions += " AND status_id in (?)"
