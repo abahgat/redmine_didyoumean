@@ -1,4 +1,8 @@
 # English strings go here
-similar_issues_caption: "Issues with similar titles"
-more_issues: "More"
-in_project: "in"
+dym_similar_issues_caption: "Issues with similar titles"
+dym_more_issues: "More"
+dym_in_project: "in"
+dym_settings: "Choose which criteria should be used when searching for possible duplicate issues"
+dym_show_only_open_label: "Return issues in statuses:"
+dym_only_open: "Only open"
+dym_all_statuses: "Any status"

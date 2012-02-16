@@ -1,6 +1,6 @@
 <div style="display: none;">
   <div id="similar_issues">
-    <b><%= l(:similar_issues_caption) %> (<span id="issues_count">&nbsp;</span>)</b>
+    <b><%= l(:dym_similar_issues_caption) %> (<span id="issues_count">&nbsp;</span>)</b>
     <ul id="similar_issues_list"></ul>
   </div>
 </div>
@@ -12,8 +12,8 @@
 
 <script type="text/javascript">
   var dym = {
-    label_more: "<%= l(:more_issues) %>",
-    label_in: "<%= l(:in_project) %>",
+    label_more: "<%= l(:dym_more_issues) %>",
+    label_in: "<%= l(:dym_in_project) %>",
     issue_url: "<%= url_for(Issue.new) %>",
     search_url: "<%= url_for(:action => 'index', :controller => 'search_issues') %>"
   };
