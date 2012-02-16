@@ -7,6 +7,7 @@ class SearchIssuesController < ApplicationController
     @query.strip!
 
     logger.info "Got request for [#{@query}]"
+    logger.debug "Did you mean settings: #{Setting.plugin_redmine_didyoumean.to_json}"
 
     @all_words = true # if true, returns records that contain all the words specified in the input query
 
@@ -42,7 +43,6 @@ class SearchIssuesController < ApplicationController
       conditions = (['subject like ?'] * @tokens.length).join(separator) + " AND project_id in (?)"
       variables = @tokens << scope
       
-      logger.info Setting.plugin_redmine_didyoumean.to_json
       if Setting.plugin_redmine_didyoumean['show_only_open'] == "1"
       	valid_statuses = IssueStatus.all(:conditions => ["is_closed <> ?", true])
       	logger.info "Valid status ids are #{valid_statuses}"
@@ -67,7 +67,6 @@ class SearchIssuesController < ApplicationController
       @issues = []
     end
 
-    logger.info @issues.to_json
     render :json => { :total => @count, :issues => @issues.map!{|i| i.as_json(:include => [:status, :tracker, :project])}}
   end
 end
