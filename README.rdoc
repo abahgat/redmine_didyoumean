@@ -1,3 +1,19 @@
-= Did You Mean
+= Did You Mean Plugin
 
-A plugin to search for duplicate Redmine issues as users type new ones
+A Redmine plugin to search for possible duplicates when users are about to open new issues.
+You can find more information on the project wiki: https://github.com/abahgat/redmine_didyoumean/wiki
+
+== Install
+
+1. Follow the Redmine plugin installation steps at: http://www.redmine.org/wiki/redmine/Plugins - Make sure the plugin is installed to <tt>vendor/plugins/redmine_didyoumean</tt>
+2. (optional) Configure the plugin by navigating to Administration > Plugins and select the Configure label on the line for Did You Mean?
+
+== License
+
+This plugin is licensed under the GNU GPL v2.  See <tt>COPYRIGHT.txt</tt> and <tt>GPL.txt</tt> for details.
+
+== Project help
+
+If you need help you can contact the maintainers on the project page on GitHub (https://github.com/abahgat/redmine_didyoumean). If you want to report bugs, please open a new issue here: https://github.com/abahgat/redmine_didyoumean/issues
+
+Please search for duplicates first :P
