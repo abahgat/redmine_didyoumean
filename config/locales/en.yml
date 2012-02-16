@@ -7,3 +7,7 @@ en:
   dym_show_only_open_label: "Return issues in statuses:"
   dym_only_open: "Only open"
   dym_all_statuses: "Any status"
+  dym_project_filter_label: "Return issues belonging to:"
+  dym_just_current: "Just the current project"
+  dym_current_and_children: "Current project and its subprojects"
+  dym_any_project: "Any project"

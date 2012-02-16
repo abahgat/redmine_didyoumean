@@ -7,7 +7,7 @@ Redmine::Plugin.register :redmine_didyoumean do
   version '0.0.1'
   url 'http://www.github.com/abahgat/redmine_didyoumean'
   author_url 'http://abahgat.com/'
-  settings(:default => {'show_only_open' => '1'}, :partial => 'settings/settings')
+  settings(:default => {'show_only_open' => '1', 'project_filter' => '1'}, :partial => 'settings/settings')
 end
 
 require 'redmine_didyoumean/hooks/didyoumean_hooks'

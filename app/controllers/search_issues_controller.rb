@@ -9,17 +9,7 @@ class SearchIssuesController < ApplicationController
     logger.info "Got request for [#{@query}]"
     logger.debug "Did you mean settings: #{Setting.plugin_redmine_didyoumean.to_json}"
 
-    @all_words = true # if true, returns records that contain all the words specified in the input query
-
-    # pick the current project
-    project = Project.find(params[:project_id]) unless params[:project_id].blank?
-    # search subprojects too
-    project_tree = project ? (project.self_and_descendants.active) : nil
-
-    # check permissions
-    scope = project_tree.select {|p| User.current.allowed_to?(:view_issues, p)}
-
-    logger.info "The current project scope is #{scope}"
+    all_words = true # if true, returns records that contain all the words specified in the input query
 
     # extract tokens from the query
     # eg. hello "bye bye" => ["hello", "bye bye"]
@@ -32,7 +22,7 @@ class SearchIssuesController < ApplicationController
       # this is probably too strict, in this use case
       @tokens.slice! 5..-1 if @tokens.size > 5
 
-      if @all_words:
+      if all_words
         separator = ' AND '
       else
         separator = ' OR '
@@ -40,8 +30,30 @@ class SearchIssuesController < ApplicationController
 
       @tokens.map! {|cur| '%' + cur +'%'}
 
-      conditions = (['subject like ?'] * @tokens.length).join(separator) + " AND project_id in (?)"
-      variables = @tokens << scope
+      conditions = (['subject like ?'] * @tokens.length).join(separator)
+      variables = @tokens
+
+      # pick the current project
+      project = Project.find(params[:project_id]) unless params[:project_id].blank?
+      
+      case Setting.plugin_redmine_didyoumean['project_filter']
+      when '2'
+      when '1'
+        # search subprojects too
+        project_tree = project ? (project.self_and_descendants.active) : nil
+      when '0'
+        project_tree = [project]
+      else
+        logger.warn "Unrecognized option for project filter: [#{Setting.plugin_redmine_didyoumean['project_filter']}], skipping"
+      end
+
+      if project_tree
+        # check permissions
+        scope = project_tree.select {|p| User.current.allowed_to?(:view_issues, p)}
+        logger.info "Set project filter to #{scope}"
+        conditions += " AND project_id in (?)"
+        variables <<= scope
+      end
       
       if Setting.plugin_redmine_didyoumean['show_only_open'] == "1"
       	valid_statuses = IssueStatus.all(:conditions => ["is_closed <> ?", true])

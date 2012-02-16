@@ -8,4 +8,13 @@
 						}, @settings['show_only_open'])
 %>
 </p>
+<p>
+<label><%= l(:dym_project_filter_label)%></label>
+<%= select_tag 'settings[project_filter]', options_for_select({
+						l(:dym_just_current) => "0",
+						l(:dym_current_and_children) => "1",
+						l(:dym_any_project) => "2",
+						}, @settings['project_filter'])
+%>
+</p>
 </fieldset>
