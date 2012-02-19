@@ -4,7 +4,7 @@ zh:
   dym_similar_issues_caption: "类似问题"
   dym_more_issues: "更多..."
   dym_in_project: "位于项目"
-  dym_settings: "Choose which criteria should be used when searching for possible duplicate issues"
+  dym_settings: "当搜索类似问题时，可配置的相关参数"
   dym_show_only_open_label: "按状态显示问题列表："
   dym_only_open: "仅打开状态"
   dym_all_statuses: "任意状态"
