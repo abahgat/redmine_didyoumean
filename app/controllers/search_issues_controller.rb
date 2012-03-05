@@ -52,14 +52,14 @@ class SearchIssuesController < ApplicationController
         scope = project_tree.select {|p| User.current.allowed_to?(:view_issues, p)}
         logger.info "Set project filter to #{scope}"
         conditions += " AND project_id in (?)"
-        variables <<= scope
+        variables << scope
       end
       
       if Setting.plugin_redmine_didyoumean['show_only_open'] == "1"
       	valid_statuses = IssueStatus.all(:conditions => ["is_closed <> ?", true])
       	logger.info "Valid status ids are #{valid_statuses}"
       	conditions += " AND status_id in (?)"
-      	variables <<= valid_statuses
+      	variables << valid_statuses
       end
 
       # this should be configurable as well, one day
