@@ -3,7 +3,7 @@ class SearchIssuesController < ApplicationController
 
   def index
   
-  	@query = params[:query] || ""  	
+    @query = params[:query] || ""   
     @query.strip!
 
     logger.info "Got request for [#{@query}]"
@@ -38,6 +38,7 @@ class SearchIssuesController < ApplicationController
       
       case Setting.plugin_redmine_didyoumean['project_filter']
       when '2'
+        project_tree = Project.all
       when '1'
         # search subprojects too
         project_tree = project ? (project.self_and_descendants.active) : nil
@@ -56,10 +57,10 @@ class SearchIssuesController < ApplicationController
       end
       
       if Setting.plugin_redmine_didyoumean['show_only_open'] == "1"
-      	valid_statuses = IssueStatus.all(:conditions => ["is_closed <> ?", true])
-      	logger.info "Valid status ids are #{valid_statuses}"
-      	conditions += " AND status_id in (?)"
-      	variables << valid_statuses
+        valid_statuses = IssueStatus.all(:conditions => ["is_closed <> ?", true])
+        logger.info "Valid status ids are #{valid_statuses}"
+        conditions += " AND status_id in (?)"
+        variables << valid_statuses
       end
 
       # this should be configurable as well, one day
