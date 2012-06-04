@@ -11,3 +11,4 @@ en:
   dym_just_current: "Just the current project"
   dym_current_and_children: "Current project and its subprojects"
   dym_any_project: "Any project"
+  dym_limit: "Limit results to:"

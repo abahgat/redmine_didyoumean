@@ -18,3 +18,10 @@
 %>
 </p>
 </fieldset>
+<fieldset>
+<p>
+  <label><%= l(:dym_limit) %></label>
+  <%= text_field_tag("settings[limit]",
+      @settings[:limit]) %>
+</p>
+</fieldset>

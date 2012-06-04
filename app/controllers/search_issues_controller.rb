@@ -63,8 +63,8 @@ class SearchIssuesController < ApplicationController
         variables << valid_statuses
       end
 
-      # this should be configurable as well, one day
-      limit = 5
+      limit = Setting.plugin_redmine_didyoumean['limit']
+      limit = 5 if limit.nil? or limit.empty?
       @issues = Issue.find(:all, :conditions => [conditions, *variables], :limit => limit)
       @count = Issue.count(:all, :conditions => [conditions, *variables])
 
