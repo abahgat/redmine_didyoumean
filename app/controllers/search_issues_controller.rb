@@ -30,7 +30,7 @@ class SearchIssuesController < ApplicationController
 
       @tokens.map! {|cur| '%' + cur +'%'}
 
-      conditions = (['subject like ?'] * @tokens.length).join(separator)
+      conditions = (['lower(subject) like lower(?)'] * @tokens.length).join(separator)
       variables = @tokens
 
       # pick the current project
