@@ -18,3 +18,11 @@
 %>
 </p>
 </fieldset>
+<fieldset>
+<p>
+  <label><%= l(:dym_limit) %></label>
+  <%= val = @settings[:limit]
+      val = 5 if @settings[:limit].nil? or @settings[:limit].empty?
+      text_field_tag("settings[limit]", val) %>
+</p>
+</fieldset>
