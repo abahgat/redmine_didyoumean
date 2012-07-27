@@ -47,7 +47,7 @@ function populateSimilarIssuesBlock(data) {
 }
 
 function displayItem(item) {
-  return '<li><a href="' + dym.issue_url + '/' + item.id + '">' + item.tracker.name + ' #' + item.id + ' &ndash; ' + item.subject + '</a> (' + item.status.name + ' ' + dym.label_in + ' ' + item.project.name +')</li>';
+  return '<li><a href="' + dym.issue_url + '/' + item.id + '">' + item.tracker_name + ' #' + item.id + ' &ndash; ' + item.subject + '</a> (' + item.status_name + ' ' + dym.label_in + ' ' + item.project_name +')</li>';
 }
 
 function emptySimilarIssuesBlock() {
