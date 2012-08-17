@@ -1,0 +1,12 @@
+ru:
+  dym_similar_issues_caption: "Задачи с похожей темой:"
+  dym_more_issues: "Еще"
+  dym_in_project: "в"
+  dym_settings: "Выберите критерий, по которому должен выполняться поиск похожих тем:"
+  dym_show_only_open_label: "Возвращать задачи со статусами:"
+  dym_only_open: "Только открытые"
+  dym_all_statuses: "Любой статус"
+  dym_project_filter_label: "Задачи принадлежащие:"
+  dym_just_current: "Только текущему проекту"
+  dym_current_and_children: "Текущему проекту и подпроектам"
+  dym_any_project: "Любому проекту"
