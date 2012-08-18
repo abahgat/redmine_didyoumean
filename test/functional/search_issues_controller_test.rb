@@ -1,8 +1,15 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class SearchIssuesControllerTest < ActionController::TestCase
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  fixtures :projects
+
+  def setup
+    public_project = Project.first(["is_public=?", true])
+    @some_subject = public_project.issues.first.subject
+  end
+
+  def test_can_search_issues
+    post :index, :query => @some_subject, :format => 'json'
+    assert_response :success
   end
 end
