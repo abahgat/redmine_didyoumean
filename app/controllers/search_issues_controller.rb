@@ -80,6 +80,14 @@ class SearchIssuesController < ApplicationController
       @issues = []
     end
 
-    render :json => { :total => @count, :issues => @issues.map!{|i| i.as_json(:include => [:status, :tracker, :project])}}
+    render :json => { :total => @count, :issues => @issues.map{|i| 
+      { #make a deep copy, otherwise rails3 makes weird stuff nesting the issue as mapping.
+      :id => i.id,
+      :tracker_name => i.tracker.name,
+      :subject => i.subject,
+      :status_name => i.status.name,
+      :project_name => i.project.name
+      }
+    }}
   end
 end
