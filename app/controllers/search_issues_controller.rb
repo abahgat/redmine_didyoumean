@@ -66,8 +66,8 @@ class SearchIssuesController < ApplicationController
 
       # this should be configurable as well, one day
       limit = 5
-      @issues = Issue.find(:all, :conditions => [conditions, *variables], :limit => limit)
-      @count = Issue.count(:all, :conditions => [conditions, *variables])
+      @issues = Issue.visible.find(:all, :conditions => [conditions, *variables], :limit => limit)
+      @count = Issue.visible.count(:all, :conditions => [conditions, *variables])
 
       logger.debug "#{@count} results found, returning the first #{@issues.length}"
 
