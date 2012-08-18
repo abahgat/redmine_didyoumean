@@ -14,8 +14,9 @@ class SearchIssuesController < ApplicationController
     # extract tokens from the query
     # eg. hello "bye bye" => ["hello", "bye bye"]
     @tokens = @query.scan(%r{((\s|^)"[\s\w]+"(\s|$)|\S+)}).collect {|m| m.first.gsub(%r{(^\s*"\s*|\s*"\s*$)}, '')}
-    # tokens must be at least 2 characters long
-    @tokens = @tokens.uniq.select {|w| w.length > 1 }
+    
+    min_length = Setting.plugin_redmine_didyoumean['min_word_length'].to_i
+    @tokens = @tokens.uniq.select {|w| w.length >= min_length }
 
     if !@tokens.empty?
       # no more than 5 tokens to search for
