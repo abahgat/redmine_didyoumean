@@ -47,7 +47,36 @@ function populateSimilarIssuesBlock(data) {
 }
 
 function displayItem(item) {
-  return '<li><a href="' + dym.issue_url + '/' + item.id + '">' + item.tracker_name + ' #' + item.id + ' &ndash; ' + item.subject + '</a> (' + item.status_name + ' ' + dym.label_in + ' ' + item.project_name +')</li>';
+
+  var issue_url = sanitize(dym.issue_url + '/' + item.id);
+  var tracker_name = sanitize(item.tracker_name);
+  var item_id = sanitize('#' + item.id);
+  var item_subject = sanitize(item.subject);
+  var item_status = sanitize(item.status_name);
+  var project_name = sanitize(item.project_name);
+
+  var item_html = '<li><a href="' + issue_url + '">' 
+    + tracker_name 
+    + ' ' + item_id
+    + ' &ndash; ' 
+    + item_subject
+    + '</a> ('
+    + item_status
+    + ' ' 
+    + dym.label_in
+    + ' ' + project_name
+    + ')</li>';
+
+  return item_html;
+}
+
+function sanitize(value) {
+  
+  var html_safe = value.replace(/[<]+/g, '&lt;')
+                      .replace(/[>]+/g, '&gt;')
+                      .replace(/["]+/g, '&quot;')
+                      .replace(/[']+/g, '&#039;');
+  return html_safe;
 }
 
 function emptySimilarIssuesBlock() {
