@@ -3,18 +3,25 @@
 <p>
 <label><%= l(:dym_show_only_open_label)%></label>
 <%= select_tag 'settings[show_only_open]', options_for_select({
-						l(:dym_only_open) => "1",
-						l(:dym_all_statuses) => "0"
-						}, @settings['show_only_open'])
+            l(:dym_only_open) => "1",
+            l(:dym_all_statuses) => "0"
+            }, @settings['show_only_open'])
 %>
 </p>
 <p>
 <label><%= l(:dym_project_filter_label)%></label>
 <%= select_tag 'settings[project_filter]', options_for_select({
-						l(:dym_just_current) => "0",
-						l(:dym_current_and_children) => "1",
-						l(:dym_any_project) => "2",
-						}, @settings['project_filter'])
+            l(:dym_just_current) => "0",
+            l(:dym_current_and_children) => "1",
+            l(:dym_any_project) => "2",
+            }, @settings['project_filter'])
+%>
+</p>
+<p>
+<label><%= l(:dym_min_word_length_label)%></label>
+<%= text_field_tag('settings[min_word_length]',
+                   @settings['min_word_length'],
+                   :type => 'number')
 %>
 </p>
 </fieldset>
