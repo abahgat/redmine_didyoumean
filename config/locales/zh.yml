@@ -1,5 +1,7 @@
-# Chinese strings go here for Rails i18n
-# Author: archonwang
+# Simplified Chinese strings go here for Rails i18n
+# Author: Steven.W
+# Based on file: en.yml
+
 zh:
   dym_similar_issues_caption: "类似问题"
   dym_more_issues: "更多..."
@@ -12,3 +14,4 @@ zh:
   dym_just_current: "仅当前项目"
   dym_current_and_children: "当前项目及其子项目"
   dym_any_project: "任意项目"
+  dym_min_word_length_label: "启用搜索的最小字符长度："
