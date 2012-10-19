@@ -24,4 +24,11 @@
                    :type => 'number')
 %>
 </p>
+<p>
+<label><%= l(:dym_use_incremental_search_label)%></label>
+<%= check_box_tag('settings[use_incremental_search]',
+                  '1',
+                  @settings['use_incremental_search'])
+%>
+</p>
 </fieldset>

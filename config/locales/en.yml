@@ -12,3 +12,4 @@ en:
   dym_current_and_children: "Current project and its subprojects"
   dym_any_project: "Any project"
   dym_min_word_length_label: "Minumum word length for searching:"
+  dym_use_incremental_search_label: "Use incremental search"

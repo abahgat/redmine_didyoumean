@@ -11,7 +11,8 @@ Redmine::Plugin.register :redmine_didyoumean do
   default_settings = {
     'show_only_open' => '1',
     'project_filter' => '1',
-    'min_word_length' => '2'
+    'min_word_length' => '2',
+    'use_incremental_search' => '1'
   }
 
   settings(:default => default_settings, :partial => 'settings/settings')

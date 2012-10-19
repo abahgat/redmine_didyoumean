@@ -1,6 +1,5 @@
-function observeIssueSubjectField(project_id) {
-
-  $('issue_subject').observe('change', function(event){
+function observeIssueSubjectField(project_id, event_type) {
+  $('issue_subject').observe(event_type, function(event){
     emptySimilarIssuesBlock();
     var url = dym.search_url;
     new Ajax.Request(url, {
