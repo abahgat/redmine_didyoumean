@@ -1,4 +1,4 @@
-function observeIssueSubjectField(project_id) {
+function observeIssueSubjectField(project_id, issue_id) {
 
   $('issue_subject').observe('change', function(event){
     emptySimilarIssuesBlock();
@@ -6,6 +6,7 @@ function observeIssueSubjectField(project_id) {
     new Ajax.Request(url, {
       parameters: {
         project_id: project_id,
+        issue_id: issue_id,
         query: Event.element(event).value
       },
       onSuccess: function(transport) {

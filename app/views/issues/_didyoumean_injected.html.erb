@@ -19,4 +19,4 @@
   };
 </script>
 
-<%= javascript_tag "observeIssueSubjectField('#{@project.id}');" %>
+<%= javascript_tag "observeIssueSubjectField('#{@project.id}', #{@issue.id or 'null'});" %>

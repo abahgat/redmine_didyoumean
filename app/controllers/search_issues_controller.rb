@@ -36,6 +36,9 @@ class SearchIssuesController < ApplicationController
 
       # pick the current project
       project = Project.find(params[:project_id]) unless params[:project_id].blank?
+
+      # when editing an existing issue this will hold its id
+      issue_id = params[:issue_id] unless params[:issue_id].blank?
       
       case Setting.plugin_redmine_didyoumean['project_filter']
       when '2'
@@ -62,6 +65,12 @@ class SearchIssuesController < ApplicationController
         logger.debug "Valid status ids are #{valid_statuses}"
         conditions += " AND status_id in (?)"
         variables << valid_statuses
+      end
+
+      if !issue_id.nil?
+        logger.debug "Excluding issue #{issue_id}"
+        conditions += " AND issues.id != (?)"
+        variables << issue_id
       end
 
       # this should be configurable as well, one day
