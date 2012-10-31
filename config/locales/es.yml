@@ -11,3 +11,5 @@ es:
   dym_just_current: "Solo proyecto actual"
   dym_current_and_children: "Proyecto actual y subproyectos"
   dym_any_project: "Cualquier proyecto"
+  dym_min_word_length_label: "Longitud mínima de palabras a buscar:"
+  dym_limit: "Limitar resultados a:"
