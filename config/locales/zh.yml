@@ -15,3 +15,4 @@ zh:
   dym_current_and_children: "当前项目及其子项目"
   dym_any_project: "任意项目"
   dym_min_word_length_label: "启用搜索的最小字符长度："
+  dym_limit: "搜索结果最大值："  
