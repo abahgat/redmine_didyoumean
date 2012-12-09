@@ -11,3 +11,5 @@ bg:
   dym_just_current: "Този проект"
   dym_current_and_children: "Този проект и под-проектите му"
   dym_any_project: "Който и да е проект"
+  dym_min_word_length_label: "Минимум дължина на дума за търсене"
+  dym_limit: "Ограничи резултати до"
