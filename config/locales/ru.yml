@@ -11,3 +11,4 @@ ru:
   dym_current_and_children: "Текущему проекту и подпроектам"
   dym_any_project: "Любому проекту"
   dym_min_word_length_label: "Минимальная длина слова для поиска:"
+  dym_limit: "максимальное количество результатов:"
