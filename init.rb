@@ -12,10 +12,14 @@ Redmine::Plugin.register :redmine_didyoumean do
     'show_only_open' => '1',
     'project_filter' => '1',
     'min_word_length' => '2',
-    'limit' => '5'
+    'limit' => '5',
+    'start_search_when' => '0'
   }
 
   settings(:default => default_settings, :partial => 'settings/settings')
 end
 
 require 'redmine_didyoumean/hooks/didyoumean_hooks'
+
+require 'issues_helper'
+IssuesHelper.send :include, SearchIssuesHelper

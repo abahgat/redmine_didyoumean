@@ -30,4 +30,13 @@
       val = 5 if @settings[:limit].nil? or @settings[:limit].empty?
       text_field_tag("settings[limit]", val) %>
 </p>
+<p>
+<label><%= l(:dym_start_search_when_label)%></label>
+<%= select_tag 'settings[start_search_when]', options_for_select({
+            l(:dym_leaving_field) => "0",
+            l(:dym_while_typing) => "1"
+            }, @settings['start_search_when'])
+%>
+</p>
+
 </fieldset>

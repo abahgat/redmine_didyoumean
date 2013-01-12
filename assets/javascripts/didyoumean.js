@@ -1,4 +1,4 @@
-function observeIssueSubjectField(project_id, issue_id) {
+function observeIssueSubjectField(project_id, issue_id, event_type) {
 
   var drawCallback = function(data) {
     if (data.total) {
@@ -7,7 +7,7 @@ function observeIssueSubjectField(project_id, issue_id) {
     }
   };
 
-  var handleChange = function(event) {
+  var handleUpdate = function(event) {
 
     emptySimilarIssuesBlock();
     var url = dym.search_url;
@@ -35,9 +35,9 @@ function observeIssueSubjectField(project_id, issue_id) {
   }
   
   if (window.jQuery) {
-    getElem('issue_subject').change(handleChange);
+    getElem('issue_subject').bind(event_type, handleUpdate);
   } else {
-    getElem('issue_subject').observe('change', handleChange);
+    getElem('issue_subject').observe(event_type, handleUpdate);
   }
 }
 
