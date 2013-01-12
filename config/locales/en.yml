@@ -13,6 +13,6 @@ en:
   dym_any_project: "Any project"
   dym_min_word_length_label: "Minumum word length for searching:"
   dym_limit: "Limit results to:"
-  dym_start_search_when_label: "Start search"
+  dym_start_search_when_label: "Start search:"
   dym_leaving_field: "when leaving the subject field"
   dym_while_typing: "while typing the issue subject"
