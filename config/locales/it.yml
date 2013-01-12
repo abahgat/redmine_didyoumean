@@ -13,3 +13,6 @@ it:
   dym_any_project: "Qualsiasi progetto"
   dym_min_word_length_label: "Lunghezza minima parole da ricercare:"
   dym_limit: "Limita risultati a:"
+  dym_start_search_when_label: "Inizia la ricerca:"
+  dym_leaving_field: "all'uscita del campo titolo"
+  dym_while_typing: "durante la digitazione del titolo"
