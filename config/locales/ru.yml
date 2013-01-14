@@ -12,3 +12,6 @@ ru:
   dym_any_project: "Любому проекту"
   dym_min_word_length_label: "Минимальная длина слова для поиска:"
   dym_limit: "максимальное количество результатов:"
+  dym_start_search_when_label: "Начать поиск:"
+  dym_leaving_field: "когда завершен ввод в поле темы"
+  dym_while_typing: "во время ввода темы"

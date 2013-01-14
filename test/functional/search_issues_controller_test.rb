@@ -1,10 +1,10 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class SearchIssuesControllerTest < ActionController::TestCase
-  fixtures :projects
+  fixtures :projects, :issues
 
   def setup
-    public_project = Project.first(["is_public=?", true])
+    public_project = Project.where(:is_public => true).first
     @some_subject = public_project.issues.first.subject
   end
 

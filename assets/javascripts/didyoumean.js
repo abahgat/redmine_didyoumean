@@ -1,15 +1,12 @@
 function observeIssueSubjectField(project_id, issue_id, event_type) {
-
-  var drawCallback = function(data) {
-    if (data.total) {
-      drawSimilarIssuesBlock();
-      populateSimilarIssuesBlock(data);
-    }
-  };
+  
+  if (window.jQuery) {
+    $(document).ready(moveSimilarIssuesRoot)
+  } else {
+    document.observe("dom:loaded", moveSimilarIssuesRoot)
+  }
 
   var handleUpdate = function(event) {
-
-    emptySimilarIssuesBlock();
     var url = dym.search_url;
     var parameters = {
       project_id: project_id,
@@ -21,13 +18,13 @@ function observeIssueSubjectField(project_id, issue_id, event_type) {
       new $.ajax(url, {
         data: parameters,
         success: function(data, textStatus, jqXHR) {
-          drawCallback(data);
+          updateSimilarIssuesBlock(data);
         }});
     } else {
       new Ajax.Request(url, {
         parameters: parameters,
         onSuccess: function(transport) {
-          drawCallback(transport.responseJSON);
+          updateSimilarIssuesBlock(transport.responseJSON);
         },
         evalJSON: true
       });
@@ -41,45 +38,29 @@ function observeIssueSubjectField(project_id, issue_id, event_type) {
   }
 }
 
-function drawSimilarIssuesBlock() {
-
-  if (window.jQuery) {
-    getElem('issue_subject').parent().after(getElem('similar_issues'));
-  } else {
-    getElem('issue_subject').up().insert({after: getElem('similar_issues')});
-  }
-
-}
-
-function populateSimilarIssuesBlock(data) {
-
-  setText(getElem('similar_issues_list'), '');
-  
+function updateSimilarIssuesBlock(data) {
   var items = data.issues;
-  for (var i = items.length - 1; i >= 0; i--) {
-    var item_html = displayItem(items[i]);
-    if (window.jQuery) {
-      getElem('similar_issues_list').prepend(item_html);
-    } else {
-      getElem('similar_issues_list').insert({top: item_html});
+  if(items.length == 0) {
+    getElem('similar_issues').hide();
+  } else {
+    var items_html = '';
+    for (var i = items.length - 1; i >= 0; i--) {
+      items_html += displayItem(items[i]);
     }
-  };
 
-  setText(getElem('issues_count'), data.total);
-  getElem('similar_issues').show();
-
-  if (data.total > data.issues.length) {
-    var more = data.total - data.issues.length;
-    if (window.jQuery) {
-      getElem('similar_issues_list').append('<li>+' + more + ' ' + dym.label_more + '</li>');
-    } else {
-      getElem('similar_issues_list').insert({bottom: '<li>+' + more + ' ' + dym.label_more + '</li>'});
+    if (data.total > data.issues.length) {
+      var more = data.total - data.issues.length;
+      var more_text = '<li>' + more + ' ' + dym.label_more + '</li>'
+      items_html += more_text
     }
+
+    setHtml(getElem('similar_issues_list'), items_html);
+    setHtml(getElem('issues_count'), data.total);
+    getElem('similar_issues').show();
   }
 }
 
 function displayItem(item) {
-
   var issue_url = sanitize(dym.issue_url + '/' + item.id);
   var tracker_name = sanitize(item.tracker_name);
   var item_id = sanitize('#' + item.id);
@@ -99,23 +80,24 @@ function displayItem(item) {
                   + ' ' + project_name
                   + ')</li>';
 
-return item_html;
+  return item_html;
+}
+
+function moveSimilarIssuesRoot() {
+  var block_to_move = getElem('similar_issues_root');
+  if (window.jQuery) {
+    getElem('issue_subject').parent().after(block_to_move);
+  } else {
+    getElem('issue_subject').up().insert({after: block_to_move});
+  }
 }
 
 function sanitize(value) {
-
   var html_safe = value.replace(/[<]+/g, '&lt;')
                        .replace(/[>]+/g, '&gt;')
                        .replace(/["]+/g, '&quot;')
                        .replace(/[']+/g, '&#039;');
   return html_safe;
-}
-
-function emptySimilarIssuesBlock() {
-
-  setText(getElem('similar_issues_list'), '');
-  getElem('similar_issues').hide();
-
 }
 
 function getElem(element_id) {
@@ -126,9 +108,9 @@ function getElem(element_id) {
   return $(the_id);
 }
 
-function setText(elem, value) {
+function setHtml(elem, value) {
   if (elem.text) {
-    elem.text(value);
+    elem.html(value);
   } else {
     elem.innerHTML = value;
   }
