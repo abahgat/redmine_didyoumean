@@ -16,10 +16,10 @@ Redmine::Plugin.register :redmine_didyoumean do
     'start_search_when' => '0'
   }
 
-  settings(:default => default_settings, :partial => 'settings/settings')
+  settings(:default => default_settings, :partial => 'settings/didyoumean_settings')
 end
 
-require 'redmine_didyoumean/hooks/didyoumean_hooks'
-
-require 'issues_helper'
-IssuesHelper.send :include, SearchIssuesHelper
+ActionDispatch::Callbacks.to_prepare do
+  require 'redmine_didyoumean/hooks/didyoumean_hooks'
+  IssuesHelper.send :include, RedmineDidyoumean::Patches::SearchIssuesHelperPatch
+end
