@@ -1,0 +1,18 @@
+# French strings go here for Rails i18n
+fr:
+  dym_similar_issues_caption: "Demandes avec un titre similaire"
+  dym_more_issues: "autres"
+  dym_in_project: "dans"
+  dym_settings: "Choisissez quels critères doivent être utilisés lors de la recherche des demandes dupliquées"
+  dym_show_only_open_label: "Renvoyer les demandes avec le statut :"
+  dym_only_open: "Uniquement ouvert"
+  dym_all_statuses: "N'importe quel statut"
+  dym_project_filter_label: "Renvoyer les demandes appartenant à :"
+  dym_just_current: "Uniquement le projet courant"
+  dym_current_and_children: "Le projet courant et ses sous-projets"
+  dym_any_project: "Tous les projets"
+  dym_min_word_length_label: "Taille minimum des mots pour la recherche :"
+  dym_limit: "Limiter les résultats à :"
+  dym_start_search_when_label: "Lancer la recherche :"
+  dym_leaving_field: "À la perte du focus du champ sujet"
+  dym_while_typing: "Lors de la saisie du sujet"
