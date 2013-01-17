@@ -5,8 +5,10 @@ You can find more information on the project wiki: https://github.com/abahgat/re
 
 == Install
 
-1. Follow the Redmine plugin installation steps at: http://www.redmine.org/wiki/redmine/Plugins - Make sure the plugin is installed to <tt>vendor/plugins/redmine_didyoumean</tt>
-2. (optional) Configure the plugin by navigating to Administration > Plugins and select the Configure label on the line for Did You Mean?
+1. Follow the Redmine plugin installation steps at: http://www.redmine.org/wiki/redmine/Plugins
+1. Make sure the plugin installation directory name is <tt>redmine_didyoumean</tt>
+1. Restart the server (this will ensure that the CSS file and other assets are copied to the right place)
+1. (optional) Configure the plugin by navigating to Administration > Plugins and select the Configure label on the line for Did You Mean?
 
 == License
 
