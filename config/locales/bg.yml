@@ -13,3 +13,6 @@ bg:
   dym_any_project: "Който и да е проект"
   dym_min_word_length_label: "Минимум дължина на дума за търсене"
   dym_limit: "Ограничи резултати до"
+  dym_start_search_when_label: "Начало на търсенето:"
+  dym_leaving_field: "когато се напуска заглавието"
+  dym_while_typing: "когато се пише в заглавието"
