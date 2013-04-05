@@ -44,7 +44,7 @@ function updateSimilarIssuesBlock(data) {
     getElem('similar_issues').hide();
   } else {
     var items_html = '';
-    for (var i = items.length - 1; i >= 0; i--) {
+    for (var i = 0; i < items.length; i++) {
       items_html += displayItem(items[i]);
     }
 
