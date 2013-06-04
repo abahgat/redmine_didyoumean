@@ -12,4 +12,7 @@ de:
   dym_current_and_children: "Gegenwärtiges Projekt und dessen Unterprojekten"
   dym_any_project: "Beliebiges Projekt"
   dym_min_word_length_label: "Suchwort Mindestlänge:"
-  dym_limit: "Ergebnisse begrenzen auf:"
+  dym_limit: "maximale Anzahl Ergebnisse:"
+  dym_start_search_when_label: "Suche beginnen:"
+  dym_leaving_field: "beim Verlassen des Ticketthemafelds"
+  dym_while_typing: "bei der Eingabe des Ticketthemas"
