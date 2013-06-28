@@ -11,7 +11,7 @@ en:
   dym_just_current: "Just the current project"
   dym_current_and_children: "Current project and its subprojects"
   dym_any_project: "Any project"
-  dym_min_word_length_label: "Minumum word length for searching:"
+  dym_min_word_length_label: "Minimum word length for searching:"
   dym_limit: "Limit results to:"
   dym_start_search_when_label: "Start search:"
   dym_leaving_field: "when leaving the subject field"
