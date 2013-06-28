@@ -1,0 +1,18 @@
+# Polish strings go here for Rails i18n
+pl:
+  dym_similar_issues_caption: "Zagadnienia o podobnych tytułach"
+  dym_more_issues: "więcej"
+  dym_in_project: "w projekcie"
+  dym_settings: "Wybierz jakie kryteria powinny być uwzględnione przy wyszukiwaniu potencjalnych duplikatów"
+  dym_show_only_open_label: "Zwracaj zagadnienia:"
+  dym_only_open: "tylko otwarte"
+  dym_all_statuses: "dowolne"
+  dym_project_filter_label: "Zwracaj zagadnienia należące:"
+  dym_just_current: "tylko do obecnego projektu"
+  dym_current_and_children: "do obecnego projektu i podprojektów"
+  dym_any_project: "do dowolnego projektu"
+  dym_min_word_length_label: "Minimalna długość słowa powodująca rozpoczęcie wyszukiwania:"
+  dym_limit: "Ogranicz listę wyników do:"
+  dym_start_search_when_label: "Rozpocznij wyszukiwanie:"
+  dym_leaving_field: "po opuszczeniu pola tematu"
+  dym_while_typing: "w czasie wpisywania"
