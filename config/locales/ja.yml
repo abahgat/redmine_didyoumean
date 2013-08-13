@@ -1,0 +1,18 @@
+# Japanese strings go here for Rails i18n
+ja:
+  dym_similar_issues_caption: "類似のチケット"
+  dym_more_issues: "他"
+  dym_in_project: "プロジェクト:"
+  dym_settings: "重複項目の検索設定"
+  dym_show_only_open_label: "類似検索するチケットのステータス"
+  dym_only_open: "未完了のチケットのみ"
+  dym_all_statuses: "全てのチケット"
+  dym_project_filter_label: "次の範囲を類似検索"
+  dym_just_current: "プロジェクトのみ"
+  dym_current_and_children: "プロジェクトとその子プロジェクト"
+  dym_any_project: "全てのプロジェクト"
+  dym_min_word_length_label: "探索のための最小のワード:"
+  dym_limit: "最大表示数:"
+  dym_start_search_when_label: "検索を開始するタイミング:"
+  dym_leaving_field: "題名からフォーカスが外れた時"
+  dym_while_typing: "題名を入力中"
