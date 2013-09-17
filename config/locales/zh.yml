@@ -16,3 +16,6 @@ zh:
   dym_any_project: "任意项目"
   dym_min_word_length_label: "启用搜索的最小字符长度："
   dym_limit: "搜索结果最大值："  
+  dym_start_search_when_label: "搜索始于："
+  dym_leaving_field: "当离开主题字段时"
+  dym_while_typing: "当输入问题主题时"
