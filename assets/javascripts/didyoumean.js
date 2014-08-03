@@ -68,7 +68,7 @@ function displayItem(item) {
   var item_status = sanitize(item.status_name);
   var project_name = sanitize(item.project_name);
 
-  var item_html = '<li><a href="' + issue_url + '" target="_blank">' 
+  var item_html = '<li><a href="' + issue_url + '">' 
                   + tracker_name 
                   + ' ' + item_id
                   + ' &ndash; ' 
