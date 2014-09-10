@@ -1,0 +1,59 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    activemodel (4.2.0)
+      activesupport (= 4.2.0)
+      builder (~> 3.1)
+    activerecord (4.2.0)
+      activemodel (= 4.2.0)
+      activesupport (= 4.2.0)
+      arel (~> 6.0)
+    activesupport (4.2.0)
+      i18n (~> 0.7)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.3, >= 0.3.4)
+      tzinfo (~> 1.1)
+    arel (6.0.0)
+    awesome_print (1.6.0)
+    builder (3.2.2)
+    coderay (1.1.0)
+    hirb (0.7.2)
+    i18n (0.7.0)
+    innertube (1.1.0)
+    joiner (0.3.4)
+      activerecord (>= 4.1.0)
+    json (1.8.1)
+    method_source (0.8.2)
+    middleware (0.1.0)
+    minitest (5.5.0)
+    mysql2 (0.3.17)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    rake (10.1.1)
+    riddle (1.5.11)
+    slop (3.6.0)
+    thinking-sphinx (3.1.2)
+      activerecord (>= 3.1.0)
+      builder (>= 2.1.2)
+      innertube (>= 1.0.2)
+      joiner (>= 0.2.0)
+      middleware (>= 0.1.0)
+      riddle (>= 1.5.11)
+    thread_safe (0.3.4)
+    tzinfo (1.2.2)
+      thread_safe (~> 0.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  activerecord-jdbcmysql-adapter
+  awesome_print
+  hirb
+  mysql2 (~> 0.3.11)
+  pry
+  rake (~> 10.1.1)
+  thinking-sphinx (~> 3.1.1)

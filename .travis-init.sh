@@ -64,6 +64,7 @@ run_tests() {
     TRACE=--trace
   fi
 
+  RAILS_ENV=test bundle exec rake ts:configure $TRACE
   script -e -c "bundle exec rake redmine:plugins:test NAME="$PLUGIN $VERBOSE
 }
 
@@ -92,11 +93,13 @@ run_install() {
     export TRACE=--trace
   fi
 
-  cp $PATH_TO_PLUGINS/$PLUGIN/.travis-database.yml config/database.yml
+  if [ -f config/database.yml ]; then
+    rm config/database.yml
+  fi
+  cp $PATH_TO_PLUGINS/$PLUGIN/.travis-database.$DB.yml config/database.yml
 
   # install gems
-  mkdir -p vendor/bundle
-  bundle install --path vendor/bundle
+  bundle install --jobs=3 --retry=3 --path=${BUNDLE_PATH:-vendor/bundle}
 
   bundle exec rake db:migrate $TRACE
   bundle exec rake redmine:load_default_data REDMINE_LANG=en $TRACE

@@ -16,3 +16,12 @@ en:
   dym_start_search_when_label: "Start search:"
   dym_leaving_field: "when leaving the subject field"
   dym_while_typing: "while typing the issue subject"
+  dym_select_searching_method: "Searching method:"
+  dym_sql: "SQL Engine"
+  dym_thinking_sphinx: "Thinking Sphinx Engine"
+  dym_settings_search_method: Choose which search method you want to use
+  dym_thinking_sphinx_info: "run rake ts:index && rake ts:start in your console to start searching with Thinking Sphinx"
+  dym_search_by_ts_info: "- Thinking Sphinx - firsly search words 1:1 after then substract last character and search again ('Running' will be looking for 'Runner' 'Running' etc.). Substract to min word length which is definded below"
+  dym_search_by_sql_info: "- Sql - search all words 1:1 ('Changes GUI' will be looking for 'Changes' and/or 'GUI')" 
+  dym_search_difference: "- Thinking Sphinx is litle faster then SQL(in most cases), if you set a lot of words Thinking Sphinx gives you more results in shorter time then SQL"
+  dym_parent: "Current project tree"
