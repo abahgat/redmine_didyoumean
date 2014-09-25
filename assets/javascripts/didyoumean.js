@@ -32,7 +32,22 @@ function observeIssueSubjectField(project_id, issue_id, event_type) {
   }
   
   if (window.jQuery) {
-    getElem('issue_subject').bind(event_type, handleUpdate);
+    if(event_type === 'keyup'){
+        function throttle(f, delay){
+            var timer = null;
+            return function(){
+                var context = this, args = arguments;
+                clearTimeout(timer);
+                timer = window.setTimeout(function(){
+                    f.apply(context, args);
+                },
+                delay || 500);
+            };
+        }
+        getElem('issue_subject').bind(event_type, throttle(handleUpdate));
+    }else{
+        getElem('issue_subject').bind(event_type, handleUpdate);
+    }
   } else {
     getElem('issue_subject').observe(event_type, handleUpdate);
   }
