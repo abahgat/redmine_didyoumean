@@ -19,4 +19,4 @@
   };
 </script>
 
-<%= javascript_tag "observeIssueSubjectField('#{@project.id}', #{@issue.id or '\'\''}, '#{issues_didyoumean_event_type}');" %>
+<%= javascript_tag "observeIssueSubjectField('#{@project.id}', #{@issue.id or '\'\''}, '#{Setting.plugin_redmine_didyoumean['start_search_when'] == "1" ? "keyup" : "change"}');" %>
