@@ -19,7 +19,4 @@ Redmine::Plugin.register :redmine_didyoumean do
   settings(:default => default_settings, :partial => 'settings/didyoumean_settings')
 end
 
-ActionDispatch::Callbacks.to_prepare do
-  require 'redmine_didyoumean/hooks/didyoumean_hooks'
-  IssuesHelper.send :include, RedmineDidyoumean::Patches::SearchIssuesHelperPatch
-end
+require 'redmine_didyoumean/hooks/didyoumean_hooks'
