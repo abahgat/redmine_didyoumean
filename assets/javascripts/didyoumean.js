@@ -31,12 +31,12 @@ function observeIssueSubjectField(project_id, issue_id, event_type) {
     }
   }
   
-  function throttle(f, delay){
+  function throttle(f, delay) {
     var timer = null;
-    return function(){
+    return function() {
       var context = this, args = arguments;
       clearTimeout(timer);
-      timer = window.setTimeout(function(){
+      timer = window.setTimeout(function() {
           f.apply(context, args);
       },
       delay || 500);
@@ -44,17 +44,17 @@ function observeIssueSubjectField(project_id, issue_id, event_type) {
   }
   
   if (window.jQuery) {
-    if(event_type === 'keyup'){
+    if (event_type === 'keyup') {
       getElem('issue_subject').attr('autocomplete', 'off');
       getElem('issue_subject').bind(event_type, throttle(handleUpdate));
-    }else{
+    } else {
       getElem('issue_subject').bind(event_type, handleUpdate);
     }
   } else {
-    if(event_type === 'keyup'){
+    if (event_type === 'keyup') {
       getElem('issue_subject').writeAttribute('autocomplete', 'off');
       getElem('issue_subject').observe(event_type, throttle(handleUpdate));
-    }else{
+    } else {
       getElem('issue_subject').observe(event_type, handleUpdate);
     }
   }
