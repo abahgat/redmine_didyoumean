@@ -1,0 +1,12 @@
+---
+settings_001:
+  id: 1
+  name: plugin_redmine_didyoumean
+  value: 
+      show_only_open: "0"
+      project_filter: "2"
+      min_world_length: "2"
+      limit: "5"
+      start_search_when: "0"
+      search_method: "0"
+  updated_on: 2014-09-10 12:57:34 +01:00

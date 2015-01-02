@@ -1,18 +1,44 @@
 language: ruby
+cache:
+  apt: true
+  bundler: true
+  directories:
+    - vendor/bundle
+addons:
+  postgresql: "9.3"
 rvm:
-  - 2.0.0
-  - 1.9.3
+  - 2.1
+  - 2.0
+  - 1.9
 env:
-  - REDMINE_VERSION=2.4.6 VERBOSE=no
-  - REDMINE_VERSION=2.5.2 VERBOSE=no
-  - REDMINE_VERSION=master VERBOSE=yes
+  - REDMINE_VERSION=2.4.7 VERBOSE=no DB=mysql
+  - REDMINE_VERSION=2.5.3 VERBOSE=no DB=mysql
+  - REDMINE_VERSION=2.6.0 VERBOSE=no DB=mysql
+  - REDMINE_VERSION=master VERBOSE=no DB=mysql
+  - REDMINE_VERSION=2.4.7 VERBOSE=no DB=postgres
+  - REDMINE_VERSION=2.5.3 VERBOSE=no DB=postgres
+  - REDMINE_VERSION=2.6.0 VERBOSE=no DB=postgres
+  - REDMINE_VERSION=master VERBOSE=no DB=postgres
+  - REDMINE_VERSION=2.4.7 VERBOSE=no DB=sqlite
+  - REDMINE_VERSION=2.5.3 VERBOSE=no DB=sqlite
+  - REDMINE_VERSION=2.6.0 VERBOSE=no DB=sqlite
+  - REDMINE_VERSION=master VERBOSE=no DB=sqlite
 script:
   - export PLUGIN=redmine_didyoumean
   - export WORKSPACE=$(pwd)/workspace
   - export PATH_TO_PLUGIN=$(pwd)
   - export PATH_TO_REDMINE=$WORKSPACE/redmine
+  - export BUNDLE_PATH=$(pwd)/vendor/bundle
   - mkdir $WORKSPACE
   - bash -x ./.travis-init.sh -r || exit 1
   - bash -x ./.travis-init.sh -i || exit 1
   - bash -x ./.travis-init.sh -t || exit 1
   - bash -x ./.travis-init.sh -u || exit 1
+before_script:
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq sphinxsearch
+  - sudo service sphinxsearch stop
+  - mysql -e 'create database didyoumean_test;'
+  - psql -c 'create database didyoumean_test;' -U postgres
+after_script:
+ - sudo service sphinxsearch stop

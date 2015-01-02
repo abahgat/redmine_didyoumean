@@ -10,6 +10,34 @@ You can find more information on the project wiki: https://github.com/abahgat/re
 1. Restart the server (this will ensure that the CSS file and other assets are copied to the right place)
 1. (optional) Configure the plugin by navigating to Administration > Plugins and select the Configure label on the line for Did You Mean?
 
+== Searching engines
+By default plugin use SQL Engine, but there is available SphinxSearch Engine. 
+
+[1. Before you switch to Thinking Sphinx you should make sure that SphinxSearch engine was installed]
+ - <tt>sudo apt-get install sphinxsearch</tt>
+ - Plugin use Thinking Sphinx v3.1.1 and Sphinx should be v2.2.4 or newer.
+ - Thinking Sphinx will be installed with bundle commend (was definded in Gemfile)
+[2. If everything was successfully installed then in your console run(in main Redmine catalog):]
+ - <tt>bundle exec rake ts:index</tt> (index your data)
+ - <tt>bundle exec rake ts:start</tt>
+ - Choose search method :  Administration -> Plugins -> Redmine Did You Mean? -> select Thinking Sphinx Engine.
+ - Now possibly duplicated subject's will be searching by Sphinx.
+[3. If you want stop searching by SphinxSearch Engine in your console run:]
+ - <tt>bundle exec rake ts:stop</tt>
+ - Switch method in plugin configuration.
+
+=== Difference between search engines
+Main adventages of SphinxSearch is fact that if you set many words to searching this gives you results faster then SQL Engine.
+
+<b>* SQL Engine:</b>
+Takes words 1:1 if you match 'GUI Changes' this will be looking for "GUI" "Changes".
+
+<b>* Thinking Sphinx Engine:</b>
+Firstly search for words 1:1 after this substrac last character ex. like: "Running"
+ - Firstly "Running" 
+ - "Runner"
+ - etc.
+
 == License
 
 This plugin is licensed under the GNU GPL v2.  See <tt>COPYRIGHT.txt</tt> and <tt>GPL.txt</tt> for details.

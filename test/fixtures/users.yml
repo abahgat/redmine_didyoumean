@@ -1,0 +1,34 @@
+users_001: 
+  id: 1
+  created_on: 2006-07-19 19:33:19 +02:00
+  status: 1
+  last_login_on: 
+  language: ''
+  hashed_password: 1
+  updated_on: 2006-07-19 19:33:19 +02:00
+  admin: false
+  mail: ''
+  lastname: Anonymous
+  firstname: ''
+  auth_source_id: 
+  mail_notification: only_my_events
+  login: ''
+  type: AnonymousUser
+# user_001: 
+#   created_on: 2014-09-10 15:00:03 +02:00
+#   status: 1
+#   last_login_on: 2014-09-10 15:10:03 +02:00
+#   language: en
+#   # password = tksky
+#   salt: 67eb4732624d5a7753dcea7ce0bb7d7d
+#   hashed_password: bfbe06043353a677d0215b26a5800d128d5413bc
+#   updated_on: 2014-09-10 15:10:03 +02:00
+#   admin: true
+#   mail: tksky@kovalsky.dot
+#   lastname: Kovalsky
+#   firstname: Teddy
+#   id: 1
+#   auth_source_id: 
+#   mail_notification: all
+#   login: tksky
+#   type: User
