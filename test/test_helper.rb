@@ -5,8 +5,8 @@ class ActionController::TestCase
 
 
   # XXX: redmine master branch is not compatible with other branches
-  fx = [:projects, :issues, :users, :settings, :members, :roles, :enabled_modules]
-  fx2 = [:issue_statuses, :trackers]
+  fx = [:enumerations, :projects, :issues, :settings, :members, :roles, :enabled_modules]
+  fx2 = [:issue_statuses, :trackers, :users]
 
   fixtures *fx
   fixtures *fx2

@@ -64,7 +64,11 @@ run_tests() {
     TRACE=--trace
   fi
 
+  export PATH=/usr/local/sphinx-2.1.9/bin/:$PATH
   RAILS_ENV=test bundle exec rake ts:configure $TRACE
+  RAILS_ENV=test bundle exec rake ts:rebuild $TRACE
+  RAILS_ENV=test bundle exec rake ts:status $TRACE
+  sudo netstat -lnptu
   script -e -c "bundle exec rake redmine:plugins:test NAME="$PLUGIN $VERBOSE
 }
 

@@ -59,3 +59,83 @@ issues_003:
   lft: 1
   rgt: 2
   lock_version: 3
+issues_004:
+  created_on: <%= 3.days.ago.to_s(:db) %>
+  project_id: 1
+  updated_on: <%= 1.day.ago.to_s(:db) %>
+  priority_id: 4
+  subject: Testing Application
+  id: 4
+  fixed_version_id:
+  category_id: 1
+  description: Elasticsearch
+  tracker_id: 1
+  assigned_to_id: 1
+  author_id: 2
+  status_id: 1
+  start_date: <%= 1.day.ago.to_date.to_s(:db) %>
+  due_date: <%= 10.day.from_now.to_date.to_s(:db) %>
+  root_id: 2
+  lft: 1
+  rgt: 2
+  lock_version: 3
+issues_005:
+  created_on: <%= 3.days.ago.to_s(:db) %>
+  project_id: 1
+  updated_on: <%= 1.day.ago.to_s(:db) %>
+  priority_id: 4
+  subject: Last tests
+  id: 5
+  fixed_version_id:
+  category_id: 1
+  description: Elasticsearch
+  tracker_id: 1
+  assigned_to_id: 1
+  author_id: 2
+  status_id: 1
+  start_date: <%= 1.day.ago.to_date.to_s(:db) %>
+  due_date: <%= 10.day.from_now.to_date.to_s(:db) %>
+  root_id: 2
+  lft: 1
+  rgt: 2
+  lock_version: 3
+issues_006:
+  created_on: <%= 3.days.ago.to_s(:db) %>
+  project_id: 1
+  updated_on: <%= 1.day.ago.to_s(:db) %>
+  priority_id: 4
+  subject: Time-tested
+  id: 6
+  fixed_version_id:
+  category_id: 1
+  description: Elasticsearch
+  tracker_id: 1
+  assigned_to_id: 1
+  author_id: 2
+  status_id: 1
+  start_date: <%= 1.day.ago.to_date.to_s(:db) %>
+  due_date: <%= 10.day.from_now.to_date.to_s(:db) %>
+  root_id: 2
+  lft: 1
+  rgt: 2
+  lock_version: 3
+issues_007:
+  created_on: <%= 3.days.ago.to_s(:db) %>
+  project_id: 1
+  updated_on: <%= 1.day.ago.to_s(:db) %>
+  priority_id: 4
+  subject: Test issue
+  id: 7
+  fixed_version_id:
+  category_id: 1
+  description: Elasticsearch
+  tracker_id: 1
+  assigned_to_id: 1
+  author_id: 2
+  status_id: 1
+  start_date: <%= 1.day.ago.to_date.to_s(:db) %>
+  due_date: <%= 10.day.from_now.to_date.to_s(:db) %>
+  root_id: 2
+  lft: 1
+  rgt: 2
+  lock_version: 3

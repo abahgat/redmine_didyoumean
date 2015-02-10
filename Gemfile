@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'searchkick' #full text search with Elasticsearch Engine
 gem 'rake', '~> 10.1.1'
 gem 'thinking-sphinx', '~> 3.1.1'
 # The MySQL gems mentioned are required for connecting to Sphinx

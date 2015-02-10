@@ -25,3 +25,16 @@ en:
   dym_search_by_sql_info: "- Sql - search all words 1:1 ('Changes GUI' will be looking for 'Changes' and/or 'GUI')" 
   dym_search_difference: "- Thinking Sphinx is litle faster then SQL(in most cases), if you set a lot of words Thinking Sphinx gives you more results in shorter time then SQL"
   dym_parent: "Current project tree"
+  dym_elastic_search: Elasticsearch Engine
+  dym_select_searching_language: Choose searching language
+  dym_select_searching_language_info: "After change run: bundle exec rake searchkick:reindex CLASS=Issue"
+  dym_search_by_elastic_info: |
+      Fallow this steps to run elastic.
+      1) Make sure that JAVA was installed.
+      2) Install ElasticSearch from : http://www.elasticsearch.org/download/
+      3) run Elasticsearch : sudo service elasticsearch start.
+      4) In main redmine catalog run : bundle exec rake searchkick:reindex CLASS=Issue
+  dym_elastic_proxy: |
+      If you are using PROXY then: move config/initializers/elasticsearch.rb.default to redmine/config/initializers/ and
+      config/elasticsearch.yml.default to redmine/config/.
+

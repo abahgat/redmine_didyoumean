@@ -1,11 +1,12 @@
 require_relative "./base_search"
+
 module RedmineDidYouMean
-  class ThinkingSphinxSearch < BaseSearch
+  class ElasticSearch < BaseSearch
 
     private
 
     def set_results query, limit
-      issues = Issue.sphinx_search query, :with => @conditions, :without_ids => [ @edited_issue ], :per_page => limit, :star => true
+      issues = Issue.elastic_search(query, operator: "or", fields: [:subject], where: @conditions, limit: limit.to_i)
       count = issues.total_entries
       return issues, count
     rescue StandardError => ex

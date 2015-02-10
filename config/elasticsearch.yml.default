@@ -1,0 +1,26 @@
+development:
+  hosts:
+    - "http://127.0.0.1:9200"
+  transport_options:
+    proxy:
+      uri: ''
+    headers:
+      user_agent: 'front'
+    request:
+      timeout: 60
+    #ssl:
+    #  ca_file: # /path/to/ca_file
+    #  verify: false
+test:
+  hosts:
+    - "http://127.0.0.1:9200"
+  transport_options:
+    proxy:
+      uri: ''
+    headers:
+      user_agent: 'front'
+    request:
+      timeout: 60
+    #ssl:
+    #  ca_file: # /path/to/ca_file
+    #  verify: false

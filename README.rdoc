@@ -11,8 +11,9 @@ You can find more information on the project wiki: https://github.com/abahgat/re
 1. (optional) Configure the plugin by navigating to Administration > Plugins and select the Configure label on the line for Did You Mean?
 
 == Searching engines
-By default plugin use SQL Engine, but there is available SphinxSearch Engine. 
+By default plugin use SQL Engine, but there is available SphinxSearch and Elasticsearch engines.
 
+<b>Thinking Sphinx Engine:</b>
 [1. Before you switch to Thinking Sphinx you should make sure that SphinxSearch engine was installed]
  - <tt>sudo apt-get install sphinxsearch</tt>
  - Plugin use Thinking Sphinx v3.1.1 and Sphinx should be v2.2.4 or newer.
@@ -25,6 +26,25 @@ By default plugin use SQL Engine, but there is available SphinxSearch Engine.
 [3. If you want stop searching by SphinxSearch Engine in your console run:]
  - <tt>bundle exec rake ts:stop</tt>
  - Switch method in plugin configuration.
+<b>Elasticsearch Engine:</b>
+[1. Make sure that JAVA and Elasticsearch was installed]
+ - Install ElasticSearch from <tt>http://www.elasticsearch.org/download/ </tt>
+ - Test your connection <tt>curl -XGET 'http://localhost:9200'</tt> - status should equal 200
+ - Switch search engine in Admin panel to <tt>Elasticsearch Engine</tt> and choose language. (by default is English)
+ - Run Elasticsearch <tt>sudo service elasticsearch start</tt>
+ - In main redmine catalog run <tt>bundle exec rake searchkick:reindex CLASS=Issue</tt>
+[2. If you want stop Elasticsearch engine]
+ - Run <tt>sudo service elasticsearch stop</tt>
+ - You can remove indexes by rails console by: <tt>Issue.clean_indices</tt>
+[3. If you are using PROXY]
+ - move <tt>config/initializers/elasticsearch.rb.default</tt> to <tt>redmine/config/initializers/</tt>
+ - move <tt>config/elasticsearch.yml.default</tt> to <tt>redmine/config/</tt>
+[4. Another languages]
+ - Install plugin to elasticsearch, guide: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/modules-plugins.html
+ - Write configuration(settings) in issue_patch.rb and add language to languages.yml file.
+[5. Elastic Management]
+ - If you want manege your elastic and indexes, then install plugin: http://www.elastichq.org/
+ - If it's done then go to: <tt>http://localhost:9200/_plugin/HQ/</tt> and connect.
 
 === Difference between search engines
 Main adventages of SphinxSearch is fact that if you set many words to searching this gives you results faster then SQL Engine.
@@ -36,6 +56,13 @@ Takes words 1:1 if you match 'GUI Changes' this will be looking for "GUI" "Chang
 Firstly search for words 1:1 after this substrac last character ex. like: "Running"
  - Firstly "Running" 
  - "Runner"
+ - etc.
+<b>* Elasticsearch Engine:</b>
+Support fuzzy word matching, real-time indexing. Query: "test":
+ - test
+ - testing
+ - tested
+ - time-testing
  - etc.
 
 == License

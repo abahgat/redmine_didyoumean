@@ -4,7 +4,8 @@
     <label><%= l(:dym_select_searching_method)%></label>
     <%= select_tag 'settings[search_method]', options_for_select({
                 l(:dym_sql) => "0",
-                l(:dym_thinking_sphinx) => "1"
+                l(:dym_thinking_sphinx) => "1",
+                l(:dym_elastic_search) => "2"
                 }, @settings['search_method'])
     %>
     <em class="info" id="sql_info"><%= l(:dym_search_by_sql_info)%></em>
@@ -13,6 +14,16 @@
       <%= l(:dym_search_by_ts_info)%><br />
       <%= l(:dym_search_difference)%>
     </em>
+    <em class="info" id="es_info">
+      <%= l(:dym_search_by_elastic_info)%><br/>
+      <%= l(:dym_elastic_proxy)%>
+    </em>
+  </p>
+  <p id="elastic_lang">
+    <label><%= l(:dym_select_searching_language)%></label>
+    <%= select_tag 'settings[search_language]', options_for_select(YAML.load_file(Rails.root.join('plugins/redmine_didyoumean/config/languages.yml')), @settings['search_language'])
+    %>
+    <em class="info" id="select_lang_note"><%= l(:dym_select_searching_language_info) %></em>
   </p>
   <hr />
   <p><%= l(:dym_settings) %></p>
@@ -57,22 +68,37 @@
   </p>
 </fieldset>
 <script type='text/javascript'>
-  $(function(){
-  if($('#settings_search_method').val() == "0") {
-    $('#ts_info').hide();
-    $('#sql_info').show();
-  }else{
-    $('#sql_info').hide();
-    $('#ts_info').show();
-  }
+  $('#select_lang_note').hide();
+  get_info();
+
   $('#settings_search_method').change(function() {
-    if($('#settings_search_method').val() == "0") {
-      $('#ts_info').hide();
-      $('#sql_info').show();
-    }else{
-      $('#sql_info').hide();
-      $('#ts_info').show();
-    }
+    get_info();
   });
-});
+
+  $('#settings_search_language').change(function() {
+    $('#select_lang_note').show();
+  });
+
+  function get_info() {
+    switch( $('#settings_search_method').val() ) {
+      case "0":
+          $('#ts_info').hide();
+          $('#es_info').hide();
+          $('#sql_info').show();
+          $('#elastic_lang').hide();
+          break;
+      case "1":
+          $('#sql_info').hide();
+          $('#es_info').hide();
+          $('#ts_info').show();
+          $('#elastic_lang').hide();
+          break;
+      case "2":
+          $('#sql_info').hide();
+          $('#ts_info').hide();
+          $('#es_info').show();
+          $('#elastic_lang').show();
+          break;
+    }
+  }
 </script>

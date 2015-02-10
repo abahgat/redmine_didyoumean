@@ -1,0 +1,30 @@
+if Rails.env != "test" # without this sql test creashed...
+  puts "Reindexing please wait..."
+
+  config = YAML.load_file(Rails.root.join('config/elasticsearch.yml'))[::Rails.env].deep_symbolize_keys
+
+  # config = {:hosts=>["http://127.0.0.1:9200"], :transport_options=>{:proxy=>{:uri=>""}, :headers=>{:user_agent=>"front"}, :request=>{:timeout=>60}}}
+
+  # default_logger = Logger.new(STDOUT)
+  # default_logger.level = Logger::DEBUG
+
+  # default_tracer = Logger.new(STDERR)
+  # default_tracer.formatter = lambda { |s, d, p, m| "#{m.gsub(/^.*$/) { |n| '   ' + n }.ansi(:faint)}\n" }
+
+  # logger = default_logger # Rails.logger
+  # tracer = default_tracer
+
+  config = {
+    hosts: config[:hosts], # ['http://127.0.0.1:9200'] # ["https://USERNAME:PASSWORD@myhost:4430"]
+    reload_connections: true,
+    reload_on_failure: true,
+    # log: true,
+    # logger: logger,
+    # trace: true,
+    # tracer: tracer,
+    retry_on_failure: true,
+    transport_options: config[:transport_options]
+  }
+
+  Searchkick.client = Elasticsearch::Client.new(config)
+end

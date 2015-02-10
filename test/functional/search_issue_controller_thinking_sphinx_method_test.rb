@@ -8,7 +8,7 @@ class SearchIssuesControllerThinkingSphinxTest < ActionController::TestCase
 
   def setup
     db_adapter = ActiveRecord::Base.connection.adapter_name.downcase
-    correct_db_adapter = %w(mysq mysql2 postgresql).include?(db_adapter)
+    correct_db_adapter = %w(mysql mysql2 postgresql).include?(db_adapter)
     skip unless correct_db_adapter
     setup_ts
   end

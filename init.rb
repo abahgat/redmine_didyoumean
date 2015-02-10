@@ -17,7 +17,8 @@ Redmine::Plugin.register :redmine_didyoumean do
     'min_word_length' => '2',
     'limit' => '5',
     'start_search_when' => '0',
-    'search_method' => '0'
+    'search_method' => '0',
+    'search_language' => 'English'
   }
 
   settings(:default => default_settings, :partial => 'settings/didyoumean_settings')
@@ -28,4 +29,5 @@ require 'redmine_didyoumean/hooks/didyoumean_hooks'
 ActiveSupport.on_load :after_initialize, yield: true do
   require 'redmine_didyoumean/patches/alias_ts_search_patch'
   require 'redmine_didyoumean/patches/monkey_after_destroy_patch'
+  require 'redmine_didyoumean/patches/issue_patch'
 end

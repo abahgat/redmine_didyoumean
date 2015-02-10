@@ -18,6 +18,17 @@ GEM
     awesome_print (1.6.0)
     builder (3.2.2)
     coderay (1.1.0)
+    elasticsearch (1.0.6)
+      elasticsearch-api (= 1.0.6)
+      elasticsearch-transport (= 1.0.6)
+    elasticsearch-api (1.0.6)
+      multi_json
+    elasticsearch-transport (1.0.6)
+      faraday
+      multi_json
+    faraday (0.9.1)
+      multipart-post (>= 1.2, < 3)
+    hashie (3.4.0)
     hirb (0.7.2)
     i18n (0.7.0)
     innertube (1.1.0)
@@ -27,6 +38,8 @@ GEM
     method_source (0.8.2)
     middleware (0.1.0)
     minitest (5.5.0)
+    multi_json (1.10.1)
+    multipart-post (2.0.0)
     mysql2 (0.3.17)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -34,6 +47,10 @@ GEM
       slop (~> 3.4)
     rake (10.1.1)
     riddle (1.5.11)
+    searchkick (0.8.5)
+      activemodel
+      elasticsearch (>= 1)
+      hashie
     slop (3.6.0)
     thinking-sphinx (3.1.2)
       activerecord (>= 3.1.0)
@@ -56,4 +73,5 @@ DEPENDENCIES
   mysql2 (~> 0.3.11)
   pry
   rake (~> 10.1.1)
+  searchkick
   thinking-sphinx (~> 3.1.1)

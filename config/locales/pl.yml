@@ -25,3 +25,14 @@ pl:
   dym_search_by_sql_info: "SQL - szuka wyrazów 1:1 ('Changes GUI' będzie szukać 'Changes' i/lub 'GUI')"
   dym_search_difference: "Thinking Sphinx jest trochę szybszy od SQL(w większości przypadków), jeśli wprowadzisz dużo wyrazów wyświetli rezultaty w krótszym czasie niż SQL"
   dym_parent: "Bierzące drzewo projektów"
+  dym_elastic_search: Elasticsearch Engine
+  dym_select_searching_language: Wybierz język wyszukiwania
+  dym_select_searching_language_info: "Po każdej zmianie wykonaj: bundle exec rake searchkick:reindex CLASS=Issue."
+  dym_search_by_elastic_info: |
+      1) Upewnij się, że JAVA jest zainstalowana.
+      2) Zainstaluj ElasticSearch z : http://www.elasticsearch.org/download/
+      3) Uruchom Elasticsearch : sudo service elasticsearch start.
+      4) W głównym katalogu redmine wykonaj : bundle exec rake searchkick:reindex CLASS=Issue
+  dym_elastic_proxy: |
+      Jeśli używasz PROXY: przenieś domyślną konfigurację - config/initializers/elasticsearch.rb.default do redmine/config/initializers/ oraz
+      config/elasticsearch.yml.default do redmine/config/.

@@ -1,6 +1,6 @@
 require 'redmine_didyoumean/searching_by_sql'
 require 'redmine_didyoumean/searching_by_thinking_sphinx'
-
+require 'redmine_didyoumean/searching_by_elastic'
 module RedmineDidYouMean
 
   def get_search_method
@@ -15,6 +15,8 @@ module RedmineDidYouMean
       SqlSearch
     when "1"
       ThinkingSphinxSearch
+    when "2"
+      ElasticSearch
     else
       raise 'There is no search method selected!'
     end
