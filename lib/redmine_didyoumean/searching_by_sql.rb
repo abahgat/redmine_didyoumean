@@ -30,7 +30,7 @@ module RedmineDidYouMean
     end
 
     def only_open_condition
-      valid_statuses = IssueStatus.all(:conditions => ["is_closed <> ?", true]).collect(&:id)
+      valid_statuses = IssueStatus.where("is_closed <> ?", true).collect(&:id)
       @query = @query.where(status_id: valid_statuses)
     end
 
