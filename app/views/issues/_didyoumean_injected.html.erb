@@ -1,3 +1,4 @@
+<% if !@project.nil? %>
 <div id="similar_issues_root">
   <div id="similar_issues" style="display: none;">
     <b><%= l(:dym_similar_issues_caption) %> (<span id="issues_count">&nbsp;</span>)</b>
@@ -20,3 +21,4 @@
 </script>
 
 <%= javascript_tag "observeIssueSubjectField('#{@project.id}', #{@issue.id or '\'\''}, '#{Setting.plugin_redmine_didyoumean['start_search_when'] == "1" ? "keyup" : "change"}');" %>
+<% end %>
