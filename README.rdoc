@@ -14,9 +14,18 @@ You can find more information on the project wiki: https://github.com/abahgat/re
 By default plugin use SQL Engine, but there is available SphinxSearch Engine. 
 
 [1. Before you switch to Thinking Sphinx you should make sure that SphinxSearch engine was installed]
+ for Debian/Ubuntu users
  - <tt>sudo apt-get install sphinxsearch</tt>
  - Plugin use Thinking Sphinx v3.1.1 and Sphinx should be v2.2.4 or newer.
  - Thinking Sphinx will be installed with bundle commend (was definded in Gemfile)
+ 
+ for RedHat/CentOS users
+ - <tt>curl -L -o sphinx-2.2.6-1.rhel7.x86_64.rpm http://sphinxsearch.com/files/sphinx-2.2.6-1.rhel7.x86_64.rpm</tt>
+ - <tt>sudo yum install ./sphinx-2.2.6-1.rhel7.x86_64.rpm</tt>
+ - <tt>sudo chkconfig searchd on</tt> 
+ - Plugin use Thinking Sphinx v3.1.1 and Sphinx should be v2.2.4 or newer.
+ - Thinking Sphinx will be installed with bundle commend (was definded in Gemfile)
+
 [2. If everything was successfully installed then in your console run(in main Redmine catalog):]
  - <tt>bundle exec rake ts:index</tt> (index your data)
  - <tt>bundle exec rake ts:start</tt>
