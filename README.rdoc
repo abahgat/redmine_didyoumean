@@ -36,7 +36,7 @@ By default plugin use SQL Engine, but there is available SphinxSearch Engine.
  - Switch method in plugin configuration.
 
 === Difference between search engines
-The main advantages of SphinxSearch is the fact that if you set many words to searching, this gives you results faster then SQL Engine.
+The main advantage of SphinxSearch is the fact that if you set many words to searching, this gives you results faster then SQL Engine.
 
 <b>* SQL Engine:</b>
 Takes words 1:1 if you match 'GUI Changes' this will be looking for "GUI" "Changes".
