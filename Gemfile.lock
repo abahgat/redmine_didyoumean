@@ -30,7 +30,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    rake (10.1.1)
+    rake (12.3.3)
     riddle (1.5.11)
     slop (3.6.0)
     thinking-sphinx (3.1.2)
@@ -54,5 +54,5 @@ DEPENDENCIES
   hirb
   mysql2 (~> 0.3.11)
   pry
-  rake (~> 10.1.1)
+  rake (~> 12.3.3)
   thinking-sphinx (~> 3.1.1)
