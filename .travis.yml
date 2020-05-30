@@ -6,10 +6,14 @@ cache:
     - vendor/bundle
 addons:
   postgresql: "9.3"
+  apt:
+    packages:
+      - sphinxsearch
 rvm:
   - 2.1
   - 2.0
   - 1.9
+sudo: false
 env:
   - REDMINE_VERSION=2.4.7 VERBOSE=no DB=mysql
   - REDMINE_VERSION=2.5.3 VERBOSE=no DB=mysql
@@ -24,21 +28,7 @@ env:
   - REDMINE_VERSION=2.6.0 VERBOSE=no DB=sqlite
   - REDMINE_VERSION=master VERBOSE=no DB=sqlite
 script:
-  - export PLUGIN=redmine_didyoumean
-  - export WORKSPACE=$(pwd)/workspace
-  - export PATH_TO_PLUGIN=$(pwd)
-  - export PATH_TO_REDMINE=$WORKSPACE/redmine
-  - export BUNDLE_PATH=$(pwd)/vendor/bundle
-  - mkdir $WORKSPACE
-  - bash -x ./.travis-init.sh -r || exit 1
-  - bash -x ./.travis-init.sh -i || exit 1
-  - bash -x ./.travis-init.sh -t || exit 1
-  - bash -x ./.travis-init.sh -u || exit 1
+  - bash ./.travis-redmine-helper.sh
 before_script:
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq sphinxsearch
-  - sudo service sphinxsearch stop
   - mysql -e 'create database didyoumean_test;'
   - psql -c 'create database didyoumean_test;' -U postgres
-after_script:
- - sudo service sphinxsearch stop
