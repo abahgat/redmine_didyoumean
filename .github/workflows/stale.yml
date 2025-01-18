@@ -25,3 +25,5 @@ jobs:
         stale-pr-message: 'Unfortunately I can''t maintain this project anymore.'
         stale-issue-label: 'no-issue-activity'
         stale-pr-label: 'no-pr-activity'
+        days-before-stale: 0 # Mark issues/PRs as stale immediately
+        days-before-close: 0 # Close issues/PRs immediately after being marked as stale
