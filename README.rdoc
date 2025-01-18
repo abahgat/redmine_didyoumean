@@ -1,5 +1,10 @@
 = Did You Mean Plugin
 
+*Note* I no longer use Redmine on a daily basis, and as such this project is unmaintained.
+Feel free to fork it it's useful to you!
+
+---
+
 A Redmine plugin to search for possible duplicates when users are about to open new issues.
 You can find more information on the project wiki: https://github.com/abahgat/redmine_didyoumean/wiki
 
